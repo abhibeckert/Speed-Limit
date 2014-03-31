@@ -55,7 +55,7 @@
     if ([self.currentWay matchesLocation:[(CLLocation *)locations.lastObject coordinate] trail:locations])
       return;
   }
-  self.currentStreetLabel.text = [locations.lastObject description];
+//  self.currentStreetLabel.text = [locations.lastObject description]; // uncomment this to show lat/lon whenever the a way cannot be found
   
   // search all stores for a way matching the location data
   for (SLSpeedLimitStore *store in self.speedLimitStores) {
