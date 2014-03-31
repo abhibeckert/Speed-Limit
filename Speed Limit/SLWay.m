@@ -138,20 +138,20 @@
       double bearingToPrev = bearingToCoord(nodeCoord, prevNodeCoord);
       double bearingDifference = MIN(fabs(bearingToCurrent - bearingToNext), fabs(bearingToCurrent - bearingToPrev));
       
-      if (bearingDifference > 5)
+      if (bearingDifference > 15)
         continue;
     } else if (hasNextNode) {
       double bearingToNext = bearingToCoord(nodeCoord, nextNodeCoord);
       double bearingDifference = fabs(bearingToCurrent - bearingToNext);
       
-      if (bearingDifference > 5)
+      if (bearingDifference > 15)
         continue;
     } else if (hasPrevNode) {
       double bearingToPrev = bearingToCoord(nodeCoord, prevNodeCoord);
       double bearingDifference = fabs(bearingToCurrent - bearingToPrev);
       
-      if (bearingDifference > 5)
-        continue;//-17.51716;145.60797
+      if (bearingDifference > 15)
+        continue;
     }
     
     return YES;

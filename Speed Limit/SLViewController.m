@@ -46,19 +46,20 @@
 
 - (void)locationDataUpdated:(NSNotification *)notif
 {
-  NSDictionary *details = notif.userInfo;
-  NSArray *locations = details[@"locations"];
+  NSArray *locations = notif.userInfo[@"locations"];
   
+//  locations = @[[[CLLocation alloc] initWithLatitude:-17.51716 longitude:145.60797]]; // millaa millaa malanda road
   
   // if we have a away, and it has a speed limit, then check if we're still inside that way.
   if (self.currentWay && self.currentWay.speedLimit != 0) {
     if ([self.currentWay matchesLocation:[(CLLocation *)locations.lastObject coordinate] trail:locations])
       return;
   }
+  self.currentStreetLabel.text = [locations.lastObject description];
   
   // search all stores for a way matching the location data
   for (SLSpeedLimitStore *store in self.speedLimitStores) {
-    [store findWayForLocationTrail:details[@"locations"] callback:^(SLWay *way) {
+    [store findWayForLocationTrail:locations callback:^(SLWay *way) {
       self.speedometerView.currentSpeedLimit = way.speedLimit;
       self.speedLimitView.currentSpeedLimit = way.speedLimit;
       self.currentStreetLabel.text = way.name;
