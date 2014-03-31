@@ -1,0 +1,878 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		380B226F18E7666B00EE4470 /* SLMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 380B226E18E7666B00EE4470 /* SLMath.m */; };
+		380B227018E7666B00EE4470 /* SLMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 380B226E18E7666B00EE4470 /* SLMath.m */; };
+		380B227118E7666B00EE4470 /* SLMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 380B226E18E7666B00EE4470 /* SLMath.m */; };
+		380B227218E7666B00EE4470 /* SLMath.m in Sources */ = {isa = PBXBuildFile; fileRef = 380B226E18E7666B00EE4470 /* SLMath.m */; };
+		3843806E18E10D51009D37C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3843806D18E10D51009D37C0 /* Foundation.framework */; };
+		3843807018E10D51009D37C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3843806F18E10D51009D37C0 /* CoreGraphics.framework */; };
+		3843807218E10D51009D37C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3843807118E10D51009D37C0 /* UIKit.framework */; };
+		3843807818E10D51009D37C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3843807618E10D51009D37C0 /* InfoPlist.strings */; };
+		3843807A18E10D51009D37C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3843807918E10D51009D37C0 /* main.m */; };
+		3843807E18E10D51009D37C0 /* SLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3843807D18E10D51009D37C0 /* SLAppDelegate.m */; };
+		3843808118E10D51009D37C0 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3843807F18E10D51009D37C0 /* Main_iPhone.storyboard */; };
+		3843808418E10D51009D37C0 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3843808218E10D51009D37C0 /* Main_iPad.storyboard */; };
+		3843808718E10D51009D37C0 /* SLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3843808618E10D51009D37C0 /* SLViewController.m */; };
+		3843808918E10D51009D37C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3843808818E10D51009D37C0 /* Images.xcassets */; };
+		3843809018E10D51009D37C0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3843808F18E10D51009D37C0 /* XCTest.framework */; };
+		3843809118E10D51009D37C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3843806D18E10D51009D37C0 /* Foundation.framework */; };
+		3843809218E10D51009D37C0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3843807118E10D51009D37C0 /* UIKit.framework */; };
+		3843809A18E10D51009D37C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3843809818E10D51009D37C0 /* InfoPlist.strings */; };
+		3843809C18E10D51009D37C0 /* Speed_LimitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3843809B18E10D51009D37C0 /* Speed_LimitTests.m */; };
+		384380A718E10D88009D37C0 /* SLSpeedometerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 384380A618E10D88009D37C0 /* SLSpeedometerView.m */; };
+		384380AA18E14EB8009D37C0 /* SLSpeedLimitView.m in Sources */ = {isa = PBXBuildFile; fileRef = 384380A918E14EB8009D37C0 /* SLSpeedLimitView.m */; };
+		384380B118E40657009D37C0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384380B018E40657009D37C0 /* Cocoa.framework */; };
+		384380BB18E40657009D37C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 384380B918E40657009D37C0 /* InfoPlist.strings */; };
+		384380BD18E40657009D37C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 384380BC18E40657009D37C0 /* main.m */; };
+		384380C118E40657009D37C0 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 384380BF18E40657009D37C0 /* Credits.rtf */; };
+		384380C418E40657009D37C0 /* SLEditorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 384380C318E40657009D37C0 /* SLEditorAppDelegate.m */; };
+		384380C718E40657009D37C0 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 384380C518E40657009D37C0 /* MainMenu.xib */; };
+		384380C918E40657009D37C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 384380C818E40657009D37C0 /* Images.xcassets */; };
+		384380CF18E40657009D37C0 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3843808F18E10D51009D37C0 /* XCTest.framework */; };
+		384380D018E40657009D37C0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384380B018E40657009D37C0 /* Cocoa.framework */; };
+		384380D818E40657009D37C0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 384380D618E40657009D37C0 /* InfoPlist.strings */; };
+		384380DA18E40657009D37C0 /* Speed_Limit_EditorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 384380D918E40657009D37C0 /* Speed_Limit_EditorTests.m */; };
+		384380E318E41F40009D37C0 /* SLSpeedLimitStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 384380E218E41F40009D37C0 /* SLSpeedLimitStore.m */; };
+		384380E418E41F40009D37C0 /* SLSpeedLimitStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 384380E218E41F40009D37C0 /* SLSpeedLimitStore.m */; };
+		384380E818E42075009D37C0 /* SLMutableSpeedLimitStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 384380E618E42075009D37C0 /* SLMutableSpeedLimitStore.m */; };
+		384380EC18E422FB009D37C0 /* SLOSMImporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 384380EA18E422FB009D37C0 /* SLOSMImporter.m */; };
+		384380EF18E4320F009D37C0 /* SLWay.m in Sources */ = {isa = PBXBuildFile; fileRef = 384380EE18E4320F009D37C0 /* SLWay.m */; };
+		384380F018E4320F009D37C0 /* SLWay.m in Sources */ = {isa = PBXBuildFile; fileRef = 384380EE18E4320F009D37C0 /* SLWay.m */; };
+		384380F218E4CA97009D37C0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384380F118E4CA97009D37C0 /* CoreLocation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3843809318E10D51009D37C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3843806218E10D51009D37C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3843806918E10D51009D37C0;
+			remoteInfo = "Speed Limit";
+		};
+		384380D118E40657009D37C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3843806218E10D51009D37C0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 384380AE18E40657009D37C0;
+			remoteInfo = "Speed Limit Editor";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		380B226D18E7664500EE4470 /* SLMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLMath.h; sourceTree = "<group>"; };
+		380B226E18E7666B00EE4470 /* SLMath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLMath.m; sourceTree = "<group>"; };
+		3843806A18E10D51009D37C0 /* Speed Limit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Speed Limit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3843806D18E10D51009D37C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3843806F18E10D51009D37C0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3843807118E10D51009D37C0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3843807518E10D51009D37C0 /* Speed Limit-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Speed Limit-Info.plist"; sourceTree = "<group>"; };
+		3843807718E10D51009D37C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3843807918E10D51009D37C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3843807B18E10D51009D37C0 /* Speed Limit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Speed Limit-Prefix.pch"; sourceTree = "<group>"; };
+		3843807C18E10D51009D37C0 /* SLAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLAppDelegate.h; sourceTree = "<group>"; };
+		3843807D18E10D51009D37C0 /* SLAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLAppDelegate.m; sourceTree = "<group>"; };
+		3843808018E10D51009D37C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		3843808318E10D51009D37C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		3843808518E10D51009D37C0 /* SLViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLViewController.h; sourceTree = "<group>"; };
+		3843808618E10D51009D37C0 /* SLViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLViewController.m; sourceTree = "<group>"; };
+		3843808818E10D51009D37C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		3843808E18E10D51009D37C0 /* Speed LimitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Speed LimitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3843808F18E10D51009D37C0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		3843809718E10D51009D37C0 /* Speed LimitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Speed LimitTests-Info.plist"; sourceTree = "<group>"; };
+		3843809918E10D51009D37C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3843809B18E10D51009D37C0 /* Speed_LimitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Speed_LimitTests.m; sourceTree = "<group>"; };
+		384380A518E10D88009D37C0 /* SLSpeedometerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSpeedometerView.h; sourceTree = "<group>"; };
+		384380A618E10D88009D37C0 /* SLSpeedometerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSpeedometerView.m; sourceTree = "<group>"; };
+		384380A818E14EB8009D37C0 /* SLSpeedLimitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSpeedLimitView.h; sourceTree = "<group>"; };
+		384380A918E14EB8009D37C0 /* SLSpeedLimitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSpeedLimitView.m; sourceTree = "<group>"; };
+		384380AF18E40657009D37C0 /* Speed Limit Editor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Speed Limit Editor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		384380B018E40657009D37C0 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		384380B318E40657009D37C0 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		384380B418E40657009D37C0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		384380B518E40657009D37C0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		384380B818E40657009D37C0 /* Speed Limit Editor-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Speed Limit Editor-Info.plist"; sourceTree = "<group>"; };
+		384380BA18E40657009D37C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		384380BC18E40657009D37C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		384380BE18E40657009D37C0 /* Speed Limit Editor-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Speed Limit Editor-Prefix.pch"; sourceTree = "<group>"; };
+		384380C018E40657009D37C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		384380C218E40657009D37C0 /* SLEditorAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SLEditorAppDelegate.h; sourceTree = "<group>"; };
+		384380C318E40657009D37C0 /* SLEditorAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SLEditorAppDelegate.m; sourceTree = "<group>"; };
+		384380C618E40657009D37C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		384380C818E40657009D37C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		384380CE18E40657009D37C0 /* Speed Limit EditorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Speed Limit EditorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		384380D518E40657009D37C0 /* Speed Limit EditorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Speed Limit EditorTests-Info.plist"; sourceTree = "<group>"; };
+		384380D718E40657009D37C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		384380D918E40657009D37C0 /* Speed_Limit_EditorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Speed_Limit_EditorTests.m; sourceTree = "<group>"; };
+		384380E118E41F40009D37C0 /* SLSpeedLimitStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLSpeedLimitStore.h; sourceTree = "<group>"; };
+		384380E218E41F40009D37C0 /* SLSpeedLimitStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLSpeedLimitStore.m; sourceTree = "<group>"; };
+		384380E518E42075009D37C0 /* SLMutableSpeedLimitStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLMutableSpeedLimitStore.h; path = "../Speed Limit/SLMutableSpeedLimitStore.h"; sourceTree = "<group>"; };
+		384380E618E42075009D37C0 /* SLMutableSpeedLimitStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLMutableSpeedLimitStore.m; path = "../Speed Limit/SLMutableSpeedLimitStore.m"; sourceTree = "<group>"; };
+		384380E918E422FB009D37C0 /* SLOSMImporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SLOSMImporter.h; path = "../Speed Limit/SLOSMImporter.h"; sourceTree = "<group>"; };
+		384380EA18E422FB009D37C0 /* SLOSMImporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SLOSMImporter.m; path = "../Speed Limit/SLOSMImporter.m"; sourceTree = "<group>"; };
+		384380ED18E4320F009D37C0 /* SLWay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLWay.h; sourceTree = "<group>"; };
+		384380EE18E4320F009D37C0 /* SLWay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLWay.m; sourceTree = "<group>"; };
+		384380F118E4CA97009D37C0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3843806718E10D51009D37C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				384380F218E4CA97009D37C0 /* CoreLocation.framework in Frameworks */,
+				3843807018E10D51009D37C0 /* CoreGraphics.framework in Frameworks */,
+				3843807218E10D51009D37C0 /* UIKit.framework in Frameworks */,
+				3843806E18E10D51009D37C0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3843808B18E10D51009D37C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3843809018E10D51009D37C0 /* XCTest.framework in Frameworks */,
+				3843809218E10D51009D37C0 /* UIKit.framework in Frameworks */,
+				3843809118E10D51009D37C0 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		384380AC18E40657009D37C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				384380B118E40657009D37C0 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		384380CB18E40657009D37C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				384380D018E40657009D37C0 /* Cocoa.framework in Frameworks */,
+				384380CF18E40657009D37C0 /* XCTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3843806118E10D51009D37C0 = {
+			isa = PBXGroup;
+			children = (
+				3843807318E10D51009D37C0 /* Speed Limit */,
+				3843809518E10D51009D37C0 /* Speed LimitTests */,
+				384380B618E40657009D37C0 /* Speed Limit Editor */,
+				384380D318E40657009D37C0 /* Speed Limit EditorTests */,
+				3843806C18E10D51009D37C0 /* Frameworks */,
+				3843806B18E10D51009D37C0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3843806B18E10D51009D37C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3843806A18E10D51009D37C0 /* Speed Limit.app */,
+				3843808E18E10D51009D37C0 /* Speed LimitTests.xctest */,
+				384380AF18E40657009D37C0 /* Speed Limit Editor.app */,
+				384380CE18E40657009D37C0 /* Speed Limit EditorTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3843806C18E10D51009D37C0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				384380F118E4CA97009D37C0 /* CoreLocation.framework */,
+				3843806D18E10D51009D37C0 /* Foundation.framework */,
+				3843806F18E10D51009D37C0 /* CoreGraphics.framework */,
+				3843807118E10D51009D37C0 /* UIKit.framework */,
+				3843808F18E10D51009D37C0 /* XCTest.framework */,
+				384380B018E40657009D37C0 /* Cocoa.framework */,
+				384380B218E40657009D37C0 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3843807318E10D51009D37C0 /* Speed Limit */ = {
+			isa = PBXGroup;
+			children = (
+				380B226D18E7664500EE4470 /* SLMath.h */,
+				380B226E18E7666B00EE4470 /* SLMath.m */,
+				3843807C18E10D51009D37C0 /* SLAppDelegate.h */,
+				3843807D18E10D51009D37C0 /* SLAppDelegate.m */,
+				3843807F18E10D51009D37C0 /* Main_iPhone.storyboard */,
+				3843808218E10D51009D37C0 /* Main_iPad.storyboard */,
+				3843808518E10D51009D37C0 /* SLViewController.h */,
+				3843808618E10D51009D37C0 /* SLViewController.m */,
+				384380A518E10D88009D37C0 /* SLSpeedometerView.h */,
+				384380A618E10D88009D37C0 /* SLSpeedometerView.m */,
+				384380A818E14EB8009D37C0 /* SLSpeedLimitView.h */,
+				384380A918E14EB8009D37C0 /* SLSpeedLimitView.m */,
+				3843808818E10D51009D37C0 /* Images.xcassets */,
+				3843807418E10D51009D37C0 /* Supporting Files */,
+				384380E118E41F40009D37C0 /* SLSpeedLimitStore.h */,
+				384380E218E41F40009D37C0 /* SLSpeedLimitStore.m */,
+				384380ED18E4320F009D37C0 /* SLWay.h */,
+				384380EE18E4320F009D37C0 /* SLWay.m */,
+			);
+			path = "Speed Limit";
+			sourceTree = "<group>";
+		};
+		3843807418E10D51009D37C0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3843807518E10D51009D37C0 /* Speed Limit-Info.plist */,
+				3843807618E10D51009D37C0 /* InfoPlist.strings */,
+				3843807918E10D51009D37C0 /* main.m */,
+				3843807B18E10D51009D37C0 /* Speed Limit-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3843809518E10D51009D37C0 /* Speed LimitTests */ = {
+			isa = PBXGroup;
+			children = (
+				3843809B18E10D51009D37C0 /* Speed_LimitTests.m */,
+				3843809618E10D51009D37C0 /* Supporting Files */,
+			);
+			path = "Speed LimitTests";
+			sourceTree = "<group>";
+		};
+		3843809618E10D51009D37C0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3843809718E10D51009D37C0 /* Speed LimitTests-Info.plist */,
+				3843809818E10D51009D37C0 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		384380B218E40657009D37C0 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				384380B318E40657009D37C0 /* AppKit.framework */,
+				384380B418E40657009D37C0 /* CoreData.framework */,
+				384380B518E40657009D37C0 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		384380B618E40657009D37C0 /* Speed Limit Editor */ = {
+			isa = PBXGroup;
+			children = (
+				384380C218E40657009D37C0 /* SLEditorAppDelegate.h */,
+				384380C318E40657009D37C0 /* SLEditorAppDelegate.m */,
+				384380E518E42075009D37C0 /* SLMutableSpeedLimitStore.h */,
+				384380E618E42075009D37C0 /* SLMutableSpeedLimitStore.m */,
+				384380E918E422FB009D37C0 /* SLOSMImporter.h */,
+				384380EA18E422FB009D37C0 /* SLOSMImporter.m */,
+				384380C518E40657009D37C0 /* MainMenu.xib */,
+				384380C818E40657009D37C0 /* Images.xcassets */,
+				384380B718E40657009D37C0 /* Supporting Files */,
+			);
+			path = "Speed Limit Editor";
+			sourceTree = "<group>";
+		};
+		384380B718E40657009D37C0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				384380B818E40657009D37C0 /* Speed Limit Editor-Info.plist */,
+				384380B918E40657009D37C0 /* InfoPlist.strings */,
+				384380BC18E40657009D37C0 /* main.m */,
+				384380BE18E40657009D37C0 /* Speed Limit Editor-Prefix.pch */,
+				384380BF18E40657009D37C0 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		384380D318E40657009D37C0 /* Speed Limit EditorTests */ = {
+			isa = PBXGroup;
+			children = (
+				384380D918E40657009D37C0 /* Speed_Limit_EditorTests.m */,
+				384380D418E40657009D37C0 /* Supporting Files */,
+			);
+			path = "Speed Limit EditorTests";
+			sourceTree = "<group>";
+		};
+		384380D418E40657009D37C0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				384380D518E40657009D37C0 /* Speed Limit EditorTests-Info.plist */,
+				384380D618E40657009D37C0 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3843806918E10D51009D37C0 /* Speed Limit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3843809F18E10D51009D37C0 /* Build configuration list for PBXNativeTarget "Speed Limit" */;
+			buildPhases = (
+				3843806618E10D51009D37C0 /* Sources */,
+				3843806718E10D51009D37C0 /* Frameworks */,
+				3843806818E10D51009D37C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Speed Limit";
+			productName = "Speed Limit";
+			productReference = 3843806A18E10D51009D37C0 /* Speed Limit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3843808D18E10D51009D37C0 /* Speed LimitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 384380A218E10D51009D37C0 /* Build configuration list for PBXNativeTarget "Speed LimitTests" */;
+			buildPhases = (
+				3843808A18E10D51009D37C0 /* Sources */,
+				3843808B18E10D51009D37C0 /* Frameworks */,
+				3843808C18E10D51009D37C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3843809418E10D51009D37C0 /* PBXTargetDependency */,
+			);
+			name = "Speed LimitTests";
+			productName = "Speed LimitTests";
+			productReference = 3843808E18E10D51009D37C0 /* Speed LimitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		384380AE18E40657009D37C0 /* Speed Limit Editor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 384380DF18E40657009D37C0 /* Build configuration list for PBXNativeTarget "Speed Limit Editor" */;
+			buildPhases = (
+				384380AB18E40657009D37C0 /* Sources */,
+				384380AC18E40657009D37C0 /* Frameworks */,
+				384380AD18E40657009D37C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Speed Limit Editor";
+			productName = "Speed Limit Editor";
+			productReference = 384380AF18E40657009D37C0 /* Speed Limit Editor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		384380CD18E40657009D37C0 /* Speed Limit EditorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 384380E018E40657009D37C0 /* Build configuration list for PBXNativeTarget "Speed Limit EditorTests" */;
+			buildPhases = (
+				384380CA18E40657009D37C0 /* Sources */,
+				384380CB18E40657009D37C0 /* Frameworks */,
+				384380CC18E40657009D37C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				384380D218E40657009D37C0 /* PBXTargetDependency */,
+			);
+			name = "Speed Limit EditorTests";
+			productName = "Speed Limit EditorTests";
+			productReference = 384380CE18E40657009D37C0 /* Speed Limit EditorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3843806218E10D51009D37C0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SL;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Abhi Beckert";
+				TargetAttributes = {
+					3843808D18E10D51009D37C0 = {
+						TestTargetID = 3843806918E10D51009D37C0;
+					};
+					384380CD18E40657009D37C0 = {
+						TestTargetID = 3843806918E10D51009D37C0;
+					};
+				};
+			};
+			buildConfigurationList = 3843806518E10D51009D37C0 /* Build configuration list for PBXProject "Speed Limit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3843806118E10D51009D37C0;
+			productRefGroup = 3843806B18E10D51009D37C0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3843806918E10D51009D37C0 /* Speed Limit */,
+				3843808D18E10D51009D37C0 /* Speed LimitTests */,
+				384380AE18E40657009D37C0 /* Speed Limit Editor */,
+				384380CD18E40657009D37C0 /* Speed Limit EditorTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3843806818E10D51009D37C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3843808418E10D51009D37C0 /* Main_iPad.storyboard in Resources */,
+				3843808918E10D51009D37C0 /* Images.xcassets in Resources */,
+				3843808118E10D51009D37C0 /* Main_iPhone.storyboard in Resources */,
+				3843807818E10D51009D37C0 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3843808C18E10D51009D37C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3843809A18E10D51009D37C0 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		384380AD18E40657009D37C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				384380BB18E40657009D37C0 /* InfoPlist.strings in Resources */,
+				384380C918E40657009D37C0 /* Images.xcassets in Resources */,
+				384380C118E40657009D37C0 /* Credits.rtf in Resources */,
+				384380C718E40657009D37C0 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		384380CC18E40657009D37C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				384380D818E40657009D37C0 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3843806618E10D51009D37C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				384380EF18E4320F009D37C0 /* SLWay.m in Sources */,
+				3843807A18E10D51009D37C0 /* main.m in Sources */,
+				380B226F18E7666B00EE4470 /* SLMath.m in Sources */,
+				384380A718E10D88009D37C0 /* SLSpeedometerView.m in Sources */,
+				384380E318E41F40009D37C0 /* SLSpeedLimitStore.m in Sources */,
+				384380AA18E14EB8009D37C0 /* SLSpeedLimitView.m in Sources */,
+				3843808718E10D51009D37C0 /* SLViewController.m in Sources */,
+				3843807E18E10D51009D37C0 /* SLAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3843808A18E10D51009D37C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				380B227018E7666B00EE4470 /* SLMath.m in Sources */,
+				3843809C18E10D51009D37C0 /* Speed_LimitTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		384380AB18E40657009D37C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				384380F018E4320F009D37C0 /* SLWay.m in Sources */,
+				384380EC18E422FB009D37C0 /* SLOSMImporter.m in Sources */,
+				384380BD18E40657009D37C0 /* main.m in Sources */,
+				384380C418E40657009D37C0 /* SLEditorAppDelegate.m in Sources */,
+				380B227118E7666B00EE4470 /* SLMath.m in Sources */,
+				384380E418E41F40009D37C0 /* SLSpeedLimitStore.m in Sources */,
+				384380E818E42075009D37C0 /* SLMutableSpeedLimitStore.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		384380CA18E40657009D37C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				380B227218E7666B00EE4470 /* SLMath.m in Sources */,
+				384380DA18E40657009D37C0 /* Speed_Limit_EditorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3843809418E10D51009D37C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3843806918E10D51009D37C0 /* Speed Limit */;
+			targetProxy = 3843809318E10D51009D37C0 /* PBXContainerItemProxy */;
+		};
+		384380D218E40657009D37C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 384380AE18E40657009D37C0 /* Speed Limit Editor */;
+			targetProxy = 384380D118E40657009D37C0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3843807618E10D51009D37C0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3843807718E10D51009D37C0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3843807F18E10D51009D37C0 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3843808018E10D51009D37C0 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		3843808218E10D51009D37C0 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3843808318E10D51009D37C0 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		3843809818E10D51009D37C0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3843809918E10D51009D37C0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		384380B918E40657009D37C0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				384380BA18E40657009D37C0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		384380BF18E40657009D37C0 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				384380C018E40657009D37C0 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		384380C518E40657009D37C0 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				384380C618E40657009D37C0 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		384380D618E40657009D37C0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				384380D718E40657009D37C0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3843809D18E10D51009D37C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3843809E18E10D51009D37C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		384380A018E10D51009D37C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Speed Limit/Speed Limit-Prefix.pch";
+				INFOPLIST_FILE = "Speed Limit/Speed Limit-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		384380A118E10D51009D37C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Speed Limit/Speed Limit-Prefix.pch";
+				INFOPLIST_FILE = "Speed Limit/Speed Limit-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		384380A318E10D51009D37C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Speed Limit.app/Speed Limit";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Speed Limit/Speed Limit-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Speed LimitTests/Speed LimitTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		384380A418E10D51009D37C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Speed Limit.app/Speed Limit";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Speed Limit/Speed Limit-Prefix.pch";
+				INFOPLIST_FILE = "Speed LimitTests/Speed LimitTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+		384380DB18E40657009D37C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Speed Limit Editor/Speed Limit Editor-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Speed Limit Editor/Speed Limit Editor-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		384380DC18E40657009D37C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Speed Limit Editor/Speed Limit Editor-Prefix.pch";
+				INFOPLIST_FILE = "Speed Limit Editor/Speed Limit Editor-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		384380DD18E40657009D37C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Speed Limit.app/Speed Limit";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Speed Limit Editor/Speed Limit Editor-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Speed Limit EditorTests/Speed Limit EditorTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		384380DE18E40657009D37C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Speed Limit.app/Speed Limit";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Speed Limit Editor/Speed Limit Editor-Prefix.pch";
+				INFOPLIST_FILE = "Speed Limit EditorTests/Speed Limit EditorTests-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3843806518E10D51009D37C0 /* Build configuration list for PBXProject "Speed Limit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3843809D18E10D51009D37C0 /* Debug */,
+				3843809E18E10D51009D37C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3843809F18E10D51009D37C0 /* Build configuration list for PBXNativeTarget "Speed Limit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				384380A018E10D51009D37C0 /* Debug */,
+				384380A118E10D51009D37C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		384380A218E10D51009D37C0 /* Build configuration list for PBXNativeTarget "Speed LimitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				384380A318E10D51009D37C0 /* Debug */,
+				384380A418E10D51009D37C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		384380DF18E40657009D37C0 /* Build configuration list for PBXNativeTarget "Speed Limit Editor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				384380DB18E40657009D37C0 /* Debug */,
+				384380DC18E40657009D37C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		384380E018E40657009D37C0 /* Build configuration list for PBXNativeTarget "Speed Limit EditorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				384380DD18E40657009D37C0 /* Debug */,
+				384380DE18E40657009D37C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3843806218E10D51009D37C0 /* Project object */;
+}
