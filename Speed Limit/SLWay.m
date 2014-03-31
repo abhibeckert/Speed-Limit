@@ -3,7 +3,9 @@
 //  Speed Limit
 //
 //  Created by Abhi Beckert on 27/03/2014.
-//  Copyright (c) 2014 Abhi Beckert. All rights reserved.
+//  
+//  This is free and unencumbered software released into the public domain.
+//  For more information, please refer to <http://unlicense.org/>
 //
 
 #import "SLWay.h"
