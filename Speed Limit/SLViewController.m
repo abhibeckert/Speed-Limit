@@ -12,6 +12,7 @@
 @interface SLViewController ()
 
 @property NSArray *speedLimitStores;
+@property SLWay *currentWay;
 
 @end
 
@@ -46,15 +47,22 @@
 - (void)locationDataUpdated:(NSNotification *)notif
 {
   NSDictionary *details = notif.userInfo;
+  NSArray *locations = details[@"locations"];
   
-//  self.currentStreetLabel.text = [NSString stringWithFormat:@"speed: %@ avg: %@ variation: %@", details[@"currentSpeed"], details[@"averageSpeed"], details[@"averageChange"]];
   
+  // if we have a away, and it has a speed limit, then check if we're still inside that way.
+  if (self.currentWay && self.currentWay.speedLimit != 0) {
+    if ([self.currentWay matchesLocation:[(CLLocation *)locations.lastObject coordinate] trail:locations])
+      return;
+  }
   
+  // search all stores for a way matching the location data
   for (SLSpeedLimitStore *store in self.speedLimitStores) {
     [store findWayForLocationTrail:details[@"locations"] callback:^(SLWay *way) {
       self.speedometerView.currentSpeedLimit = way.speedLimit;
       self.speedLimitView.currentSpeedLimit = way.speedLimit;
       self.currentStreetLabel.text = way.name;
+      self.currentWay = way;
     }];
   }
 }
