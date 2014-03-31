@@ -58,6 +58,9 @@ static CGFloat layerContentsScale;
   CGFloat inset = lineWidth / 2.0;
   UIFont *markerFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:ceil(radius / 7)];
   UIFont *currentSpeedFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:ceil(radius / 3.5)];
+  CGFloat majorMarkerDegreesDelta = 1.25;
+  CGFloat minorMarkerDegreesDelta = 0.75;
+  
   
   // white circle background, so we're always on a white backdrop
   self.backgroundCircleLayer = [CAShapeLayer layer];
@@ -72,7 +75,7 @@ static CGFloat layerContentsScale;
   // black outer ring for the speedometer, just a rounded rect with a black stroke
   self.outerRingLayer = [CAShapeLayer layer];
   path = [UIBezierPath bezierPath];
-  [path addArcWithCenter:centerPoint radius:radius startAngle:DegreesToRadians(minPositionDegrees + 90) endAngle:DegreesToRadians(maxPositionDegrees + 90) clockwise:YES];
+  [path addArcWithCenter:centerPoint radius:radius startAngle:DegreesToRadians(minPositionDegrees + 90 - (majorMarkerDegreesDelta - 0.1)) endAngle:DegreesToRadians(maxPositionDegrees + 90 + (majorMarkerDegreesDelta - 0.1)) clockwise:YES];
   self.outerRingLayer.path = path.CGPath;
   self.outerRingLayer.fillColor = [UIColor clearColor].CGColor;
   self.outerRingLayer.strokeColor = [UIColor blackColor].CGColor;
@@ -82,7 +85,7 @@ static CGFloat layerContentsScale;
   // red outer ring for the over speed limit part of the speedometer
   self.outerRingOverSpeedLayer = [CAShapeLayer layer];
   path = [UIBezierPath bezierPath];
-  [path addArcWithCenter:centerPoint radius:radius startAngle:DegreesToRadians(minPositionDegrees + 90) endAngle:DegreesToRadians(maxPositionDegrees + 90) clockwise:YES];
+  [path addArcWithCenter:centerPoint radius:radius startAngle:DegreesToRadians(minPositionDegrees + 90 - (majorMarkerDegreesDelta - 0.1)) endAngle:DegreesToRadians(maxPositionDegrees + 90 + (majorMarkerDegreesDelta - 0.1)) clockwise:YES];
   self.outerRingOverSpeedLayer.path = path.CGPath;
   self.outerRingOverSpeedLayer.fillColor = [UIColor clearColor].CGColor;
   self.outerRingOverSpeedLayer.strokeColor = [UIColor redColor].CGColor;
@@ -97,24 +100,17 @@ static CGFloat layerContentsScale;
   for (markerSpeed = 0; markerSpeed <= maxSpeed; markerSpeed += 10) {
     BOOL majorMakrer = (markerSpeed / 10) % 2 == 0;
     CGFloat speedDegrees = minPositionDegrees + (markerSpeed * speedDegreeRatio);
-    CGFloat thickness = majorMakrer ? lineWidth : lineWidth / 6.0;
-    CGFloat length = majorMakrer ? lineWidth * 6 : lineWidth * 2;
-    CGFloat spacing = lineWidth * 1.5;
+    CGFloat markerDegreesDelta = majorMakrer ? majorMarkerDegreesDelta : minorMarkerDegreesDelta;
+    CGFloat markerInnerRadius = majorMakrer ? radius * 0.8 : radius * 0.875;
     
-    // first/last marker are longer, and don't have a space between them and the outer ring
-    if (markerSpeed == 0 || markerSpeed == 140) {
-      length += lineWidth * 1.5;
-      length += lineWidth / 2;
-      spacing = 0 - (lineWidth / 2);
-    }
-    
-    CALayer *markerLayer = [CALayer layer];
-    markerLayer.frame = CGRectMake(centerPoint.x - (thickness / 2), centerPoint.y - (length / 2), thickness, length);
-    markerLayer.allowsEdgeAntialiasing = YES;
-    markerLayer.backgroundColor = [UIColor blackColor].CGColor;
-    
-    markerLayer.anchorPoint = CGPointMake(0.5, 0 - ((radius - length - spacing) / length));
-    [markerLayer setValue:DegreesToNumber(speedDegrees) forKeyPath:@"transform.rotation.z"];
+    CAShapeLayer *markerLayer = [CAShapeLayer layer];
+    path = [UIBezierPath bezierPath];
+    [path moveToPoint:CGPointMake(centerPoint.x + markerInnerRadius * cos(DegreesToRadians(speedDegrees + 90)), centerPoint.y + markerInnerRadius * sin(DegreesToRadians(speedDegrees + 90)))];
+    [path addLineToPoint:CGPointMake(centerPoint.x + radius * cos(DegreesToRadians(speedDegrees + 90 - markerDegreesDelta)), centerPoint.y + radius * sin(DegreesToRadians(speedDegrees + 90 - markerDegreesDelta)))];
+    [path addLineToPoint:CGPointMake(centerPoint.x + radius * cos(DegreesToRadians(speedDegrees + 90 + markerDegreesDelta)), centerPoint.y + radius * sin(DegreesToRadians(speedDegrees + 90 + markerDegreesDelta)))];
+    [path closePath];
+    markerLayer.path = path.CGPath;
+    markerLayer.fillColor = [UIColor blackColor].CGColor;
     
     [self.layer addSublayer:markerLayer];
     [speedMarkerLayers addObject:markerLayer];
@@ -141,7 +137,7 @@ static CGFloat layerContentsScale;
   self.speedMarkerLayers = speedMarkerLayers.copy;
   
   // current speed label
-  CGFloat labelRadius = radius - (radius / 4.5);
+  CGFloat labelRadius = radius * 0.9;
   CGFloat labelCenterX = floor((labelRadius * cos(((90) * M_PI) / 180.0f)) + centerPoint.x);
   CGFloat labelCenterY = floor((labelRadius * sin(((90) * M_PI) / 180.0f)) + centerPoint.y);
   CGFloat labelWidth = radius / 1.2;
@@ -249,11 +245,11 @@ static CGFloat layerContentsScale;
   self.outerRingOverSpeedLayer.strokeStart = speedLimitDegrees / (maxPositionDegrees - minPositionDegrees);
   
   NSUInteger markerSpeed = 0;
-  for (CALayer *markerLayer in self.speedMarkerLayers) {
+  for (CAShapeLayer *markerLayer in self.speedMarkerLayers) {
     if (markerSpeed < self.currentSpeedLimit || self.currentSpeedLimit == 0) {
-      markerLayer.backgroundColor = [UIColor blackColor].CGColor;
+      markerLayer.fillColor = [UIColor blackColor].CGColor;
     } else {
-      markerLayer.backgroundColor = [UIColor redColor].CGColor;
+      markerLayer.fillColor = [UIColor redColor].CGColor;
     }
     
     markerSpeed += 10;
