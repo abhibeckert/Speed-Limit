@@ -161,14 +161,14 @@ static CGFloat layerContentsScale;
   // the speedometer needle. A transparent rectangle layer with an ancor point allowing a rotation transformation to be applied, with a triangle bezier path layer inside it.
   self.needleLayer = [CALayer layer];
   self.needleLayer.frame = CGRectMake(centerPoint.x - lineWidth, centerPoint.y - (radius / 2), lineWidth * 2, radius);
-  self.needleLayer.anchorPoint = CGPointMake(0.5, 0);
-  [self.needleLayer setValue:DegreesToNumber(minPositionDegrees) forKeyPath:@"transform.rotation.z"];
+  self.needleLayer.anchorPoint = CGPointMake(0.5, 1.0);
+  [self.needleLayer setValue:DegreesToNumber(minPositionDegrees - 180) forKeyPath:@"transform.rotation.z"];
   
   CAShapeLayer *needleShapeLayer = [CAShapeLayer layer];
   path = [UIBezierPath bezierPath];
-  [path moveToPoint:CGPointMake(lineWidth, radius - lineWidth)];
-  [path addLineToPoint:CGPointMake(0, 0)];
-  [path addLineToPoint:CGPointMake(lineWidth * 2, 0)];
+  [path moveToPoint:CGPointMake(lineWidth, lineWidth)];
+  [path addLineToPoint:CGPointMake(0, radius)];
+  [path addLineToPoint:CGPointMake(lineWidth * 2, radius)];
   [path closePath];
   needleShapeLayer.path = path.CGPath;
   needleShapeLayer.fillColor = [UIColor redColor].CGColor;
@@ -220,7 +220,7 @@ static CGFloat layerContentsScale;
   
   [CATransaction setAnimationTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
   
-  [self.needleLayer setValue:DegreesToNumber(speedDegrees) forKeyPath:@"transform.rotation.z"];
+  [self.needleLayer setValue:DegreesToNumber(speedDegrees - 180) forKeyPath:@"transform.rotation.z"];
   
   [CATransaction commit];
   
