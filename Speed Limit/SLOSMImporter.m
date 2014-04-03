@@ -45,7 +45,7 @@ NSString *readLineAsNSString(FILE *file)
 @property NSMutableDictionary *parserCurrentWay;
 
 @property (nonatomic, copy) void (^progressCallback)(float progress);
-@property NSUInteger progressTotalLineCount;
+@property NSInteger progressTotalLineCount;
 
 @end
 
@@ -67,23 +67,58 @@ NSString *readLineAsNSString(FILE *file)
 {
   self.progressCallback = progressCallback;
   
-  self.parser = [[NSXMLParser alloc] initWithContentsOfURL:self.url];
+  // map file contents into virtual memory
+  NSData *parserData = [NSData dataWithContentsOfURL:self.url options:NSDataReadingMappedAlways error:NULL];
+  
+  self.parser = [[NSXMLParser alloc] initWithData:parserData];
   self.parser.delegate = self;
   
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    // count how many lines there are
+  // count how many lines there are
+  self.progressTotalLineCount = -1;
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+
+    // iterate through the data in 10KB chunks, counting how many newlines there are
     NSUInteger lineCount = 0;
-    FILE *file = fopen(self.url.path.UTF8String, "r");
-    while(!feof(file))
-    {
-      @autoreleasepool {
-        readLineAsNSString(file);
-        lineCount++;
+    NSUInteger byteOffset = 0;
+    NSUInteger bytesLength = parserData.length;
+    while (byteOffset < bytesLength) {
+      NSUInteger chunkOffset = 0;
+      NSUInteger chunkLength = MIN(parserData.length - byteOffset, 10000);
+      UInt8 chunkBytes[chunkLength];
+      [parserData getBytes:&chunkBytes range:NSMakeRange(byteOffset, chunkLength)];
+      
+      for (chunkOffset = 0; chunkOffset < chunkLength; chunkOffset++) {
+        UInt8 character = chunkBytes[chunkOffset];
+        
+        // classic mac or windows newline
+        if (character == '\r') {
+          lineCount++;
+          
+          // windows newline
+          if (chunkOffset + 1 < chunkLength) {
+            if (chunkBytes[chunkOffset + 1] == '\n') {
+              byteOffset++;
+            }
+          }
+          continue;
+        }
+        
+        // modern mac or unix newline
+        if (character == '\n') {
+          lineCount++;
+          continue;
+        }
       }
+      byteOffset += chunkLength;
     }
-    fclose(file);
-    self.progressTotalLineCount = lineCount;
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+      self.progressTotalLineCount = lineCount;
+    });
+  });
+  
+  // parse the data
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     // parse data
     [self.parser parse];
     
@@ -113,7 +148,8 @@ NSString *readLineAsNSString(FILE *file)
   static NSDate *lastProgressUpdate = nil;
   if (!lastProgressUpdate || [lastProgressUpdate timeIntervalSinceNow] < -0.5) {
     dispatch_async(dispatch_get_main_queue(), ^{
-      self.progressCallback((float)self.parser.lineNumber / (float)self.progressTotalLineCount);
+      if (self.progressTotalLineCount != -1)
+        self.progressCallback((float)self.parser.lineNumber / (float)self.progressTotalLineCount);
     });
     lastProgressUpdate = [NSDate date];
   }
