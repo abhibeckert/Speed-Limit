@@ -18,6 +18,7 @@
 @property (assign) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSTableView *wayList;
 @property (weak) IBOutlet NSTextField *wayCountLabel;
+@property (weak) IBOutlet NSProgressIndicator *progressBar;
 
 - (IBAction)performImportOsmFile:(id)sender;
 - (IBAction)saveAs:(id)sender;

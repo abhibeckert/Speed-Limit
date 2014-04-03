@@ -13,6 +13,7 @@
 @interface SLEditorAppDelegate ()
 
 @property (strong) SLMutableSpeedLimitStore *store;
+@property BOOL importInProgress;
 
 @end
 
@@ -27,6 +28,10 @@
 
 - (IBAction)performImportOsmFile:(id)sender
 {
+  if (self.importInProgress) {
+    NSBeep();
+    return;
+  }
   NSOpenPanel *panel = [NSOpenPanel openPanel];
   panel.allowedFileTypes = @[@"osm", @"xml"];
   
@@ -54,12 +59,39 @@
 
 - (void)importOSMUrl:(NSURL *)osmUrl
 {
+  if (self.importInProgress) {
+    NSBeep();
+    return;
+  }
+  
   SLOSMImporter *importer = [[SLOSMImporter alloc] initWithStore:self.store importURL:osmUrl];
   
-  [importer import];
+  self.importInProgress = YES;
+  [self.progressBar setIndeterminate:YES];
+  [self.progressBar setHidden:NO];
+  [self.progressBar startAnimation:self];
+  __block BOOL firstProgressUpdate = YES;
   
-  [self.wayList reloadData];
-  self.wayCountLabel.stringValue = [NSString stringWithFormat:@"%li ways", (long)self.store.allWays.count];
+  [importer importWithCompletion:^{
+    [self.progressBar stopAnimation:self];
+    [self.progressBar setHidden:YES];
+    
+    self.importInProgress = NO;
+    
+    [self.wayList reloadData];
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    self.wayCountLabel.stringValue = [NSString stringWithFormat:@"%@ ways. %.f%% speed limit coverage",
+                                      [numberFormatter stringFromNumber:[NSNumber numberWithUnsignedInteger:self.store.allWays.count]],
+                                      round(((double)importer.countWaysWithSpeedLimit / (double)self.store.allWays.count) * 100.0)];
+  } progressUpdates:^(float progress) {
+    if (firstProgressUpdate) {
+      [self.progressBar setIndeterminate:NO];
+      self.progressBar.maxValue = 1.0;
+      firstProgressUpdate = NO;
+    }
+    self.progressBar.doubleValue = progress;
+  }];
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView

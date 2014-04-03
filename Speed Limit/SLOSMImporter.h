@@ -15,8 +15,10 @@
 
 @interface SLOSMImporter : NSObject
 
+@property NSUInteger countWaysWithSpeedLimit;
+
 - (instancetype)initWithStore:(SLMutableSpeedLimitStore *)store importURL:(NSURL *)url;
 
-- (void)import;
+- (void)importWithCompletion:(void (^)())completionCallback progressUpdates:(void (^)(float progress))progressCallback;
 
 @end

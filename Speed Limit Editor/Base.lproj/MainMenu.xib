@@ -13,6 +13,7 @@
         <customObject id="-3" userLabel="Application"/>
         <customObject id="Voe-Tx-rLC" customClass="SLEditorAppDelegate">
             <connections>
+                <outlet property="progressBar" destination="Xv1-Oh-Rzn" id="55x-fK-lC8"/>
                 <outlet property="wayCountLabel" destination="Pbg-vD-tIA" id="KyV-WH-fda"/>
                 <outlet property="wayList" destination="7Ea-45-MSb" id="tpn-0S-MI8"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
@@ -671,14 +672,14 @@
         <window title="Speed Limit Editor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
+            <rect key="contentRect" x="335" y="390" width="783" height="489"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="783" height="489"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z3i-nU-FSE">
-                        <rect key="frame" x="14" y="312" width="158" height="32"/>
+                        <rect key="frame" x="14" y="441" width="158" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Import OSM/SLD..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qb7-H3-g3Z">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -689,20 +690,20 @@
                         </connections>
                     </button>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gyI-Dh-vfN">
-                        <rect key="frame" x="20" y="53" width="440" height="246"/>
+                        <rect key="frame" x="20" y="53" width="743" height="375"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <clipView key="contentView" id="q1P-8W-pPe">
-                            <rect key="frame" x="1" y="17" width="438" height="228"/>
+                            <rect key="frame" x="1" y="17" width="741" height="357"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="Mc8-DS-WPd" id="7Ea-45-MSb">
-                                    <rect key="frame" x="0.0" y="0.0" width="438" height="228"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="741" height="357"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="name" width="332" minWidth="40" maxWidth="1000" id="YU2-qk-C8o">
+                                        <tableColumn identifier="name" width="635" minWidth="40" maxWidth="1000" id="YU2-qk-C8o">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -745,7 +746,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="Mc8-DS-WPd">
-                            <rect key="frame" x="0.0" y="0.0" width="438" height="17"/>
+                            <rect key="frame" x="0.0" y="0.0" width="741" height="17"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
@@ -759,7 +760,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2B5-cb-H9j">
-                        <rect key="frame" x="314" y="13" width="152" height="32"/>
+                        <rect key="frame" x="617" y="13" width="152" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Save as SLD File..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Li2-fb-nqZ">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -769,11 +770,17 @@
                             <action selector="saveAs:" target="Voe-Tx-rLC" id="5av-6T-V97"/>
                         </connections>
                     </button>
+                    <progressIndicator hidden="YES" maxValue="100" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="Xv1-Oh-Rzn">
+                        <rect key="frame" x="174" y="448" width="589" height="20"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    </progressIndicator>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Xv1-Oh-Rzn" secondAttribute="trailing" constant="20" id="AQu-3y-aWR"/>
                     <constraint firstItem="Z3i-nU-FSE" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="Evj-E8-hFY"/>
                     <constraint firstItem="gyI-Dh-vfN" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="FI7-Zo-hiY"/>
                     <constraint firstItem="Z3i-nU-FSE" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="N28-KD-0n1"/>
+                    <constraint firstItem="Xv1-Oh-Rzn" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="22" id="NFM-uK-GoH"/>
                     <constraint firstItem="Pbg-vD-tIA" firstAttribute="top" secondItem="gyI-Dh-vfN" secondAttribute="bottom" constant="8" id="QVc-Ai-Xbg"/>
                     <constraint firstAttribute="bottom" secondItem="Pbg-vD-tIA" secondAttribute="bottom" constant="28" id="Sp4-aE-qhD"/>
                     <constraint firstItem="Pbg-vD-tIA" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="22" id="TyN-el-rwo"/>
@@ -781,6 +788,7 @@
                     <constraint firstItem="gyI-Dh-vfN" firstAttribute="top" secondItem="Z3i-nU-FSE" secondAttribute="bottom" constant="20" id="fMq-J8-VgV"/>
                     <constraint firstAttribute="bottom" secondItem="2B5-cb-H9j" secondAttribute="bottom" constant="20" id="gNg-G9-t6x"/>
                     <constraint firstAttribute="trailing" secondItem="2B5-cb-H9j" secondAttribute="trailing" constant="20" id="h9Y-dT-PKe"/>
+                    <constraint firstItem="Xv1-Oh-Rzn" firstAttribute="leading" secondItem="Z3i-nU-FSE" secondAttribute="trailing" constant="8" id="hq0-xF-Joc"/>
                 </constraints>
             </view>
         </window>
