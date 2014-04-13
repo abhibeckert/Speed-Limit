@@ -25,15 +25,22 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-  unsigned long wayId = self.wayId;
-  [coder encodeBytes:(void *)&wayId length:sizeof(wayId)];
-  
   [coder encodeObject:self.name];
   
   unsigned long speed = self.speedLimit;
   [coder encodeBytes:(void *)&speed length:sizeof(speed)];
   
-  [coder encodeObject:self.nodes];
+  // encode the all nodes as their offset from minCoord
+  unsigned long nodeCount = self.nodes.count;
+  [coder encodeBytes:(void *)&nodeCount length:sizeof(nodeCount)];
+  for (NSUInteger nodeIndex = 0; nodeIndex < coordCount; nodeIndex++) {
+    CLLocationCoordinate2D coord = coords[nodeIndex];
+    float lat = coord.latitude;
+    float lon = coord.longitude;
+    
+    [coder encodeBytes:(void *)&lat length:sizeof(lat)];
+    [coder encodeBytes:(void *)&lon length:sizeof(lon)];
+  }
 }
 
 - (id)initWithCoder:(NSCoder *)decoder
@@ -64,9 +71,8 @@
   self.speedLimit = speed;
   
   coordCount = nodes.count;
-  NSUInteger nodeIndex;
   coords = malloc(coordCount * sizeof(CLLocationCoordinate2D));
-  for (nodeIndex = 0; nodeIndex < coordCount; nodeIndex++) {
+  for (NSUInteger nodeIndex = 0; nodeIndex < coordCount; nodeIndex++) {
     coords[nodeIndex] = CLLocationCoordinate2DMake([nodes[nodeIndex][0] doubleValue], [nodes[nodeIndex][1] doubleValue]);
   }
   
@@ -81,24 +87,57 @@
 - (NSArray *)nodes
 {
   NSMutableArray *nodes = @[].mutableCopy;
-  NSUInteger nodeIndex = 0;
-  for (nodeIndex = 0; nodeIndex < coordCount; nodeIndex++) {
+  for (NSUInteger nodeIndex = 0; nodeIndex < coordCount; nodeIndex++) {
     [nodes addObject:@[[NSNumber numberWithFloat:coords[nodeIndex].latitude], [NSNumber numberWithFloat:coords[nodeIndex].longitude]]];
   }
   
   return nodes.copy;
 }
 
+- (CLLocationCoordinate2D)minCoord
+{
+  CLLocationCoordinate2D minCoord = coords[0];
+  
+  for (NSUInteger nodeIndex = 1; nodeIndex < coordCount; nodeIndex++) {
+    CLLocationCoordinate2D coord = coords[nodeIndex];
+    
+    if (coord.latitude < minCoord.latitude) {
+      minCoord.latitude = coord.latitude;
+    }
+    if (coord.longitude < minCoord.longitude) {
+      minCoord.longitude = coord.longitude;
+    }
+  }
+  
+  return minCoord;
+}
+
+- (CLLocationCoordinate2D)maxCoord
+{
+  CLLocationCoordinate2D maxCoord = coords[0];
+  
+  for (NSUInteger nodeIndex = 1; nodeIndex < coordCount; nodeIndex++) {
+    CLLocationCoordinate2D coord = coords[nodeIndex];
+    
+    if (coord.latitude > maxCoord.latitude) {
+      maxCoord.latitude = coord.latitude;
+    }
+    if (coord.longitude > maxCoord.longitude) {
+      maxCoord.longitude = coord.longitude;
+    }
+  }
+  
+  return maxCoord;
+}
+
 - (BOOL)matchesLocation:(CLLocationCoordinate2D)location trail:(NSArray *)locations
 {
   static CLLocationCoordinate2D invalidCoord = (CLLocationCoordinate2D){200, 200};
   
-  NSUInteger nodeIndex = 0;
-  
   if (coordCount == 1)
     return NO; // not a valid way, and will screw up our search algorithm
   
-  for (nodeIndex = 0; nodeIndex < coordCount; nodeIndex++) {
+  for (NSUInteger nodeIndex = 0; nodeIndex < coordCount; nodeIndex++) {
     // load nodes
     CLLocationCoordinate2D nodeCoord = coords[nodeIndex];
     

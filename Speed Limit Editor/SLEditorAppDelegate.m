@@ -13,6 +13,7 @@
 @interface SLEditorAppDelegate ()
 
 @property (strong) SLMutableSpeedLimitStore *store;
+@property (strong) NSURL *defaultExportUrl;
 @property BOOL importInProgress;
 
 @end
@@ -40,6 +41,8 @@
       return;
     
     [self importOSMUrl:panel.URL];
+    
+    self.defaultExportUrl = [NSURL URLWithString:[panel.URL.absoluteString.stringByDeletingPathExtension stringByAppendingPathExtension:@"sld"]];
   }];
 }
 
@@ -48,12 +51,16 @@
   NSSavePanel *panel = [NSSavePanel savePanel];
   panel.allowedFileTypes = @[@"sld"];
   panel.allowsOtherFileTypes = NO;
+  panel.nameFieldStringValue = self.defaultExportUrl.lastPathComponent;
   
   [panel beginWithCompletionHandler:^(NSInteger result) {
     if (result == NSFileHandlingPanelCancelButton)
       return;
     
     [self.store writeToUrl:panel.URL];
+    
+    [[NSWorkspace sharedWorkspace] selectFile:panel.URL.path inFileViewerRootedAtPath:nil];
+    [[NSApplication sharedApplication] terminate:self];
   }];
 }
 

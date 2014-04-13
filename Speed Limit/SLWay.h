@@ -18,6 +18,10 @@
 @property (readonly) NSString *name;
 @property (readonly) NSUInteger speedLimit;
 
+@property (nonatomic) NSArray *nodes;
+@property (readonly) CLLocationCoordinate2D minCoord;
+@property (readonly) CLLocationCoordinate2D maxCoord;
+
 - (BOOL)matchesLocation:(CLLocationCoordinate2D)location trail:(NSArray *)locations;
 
 @end

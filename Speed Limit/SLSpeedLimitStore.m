@@ -32,12 +32,12 @@
   
   self.storageUrl = url;
   
-  __weak typeof(self) weakSelf = self;
+  __weak typeof(self) welf = self;
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
     
     NSArray *ways = [NSKeyedUnarchiver unarchiveObjectWithFile:self.storageUrl.path];
     dispatch_sync(dispatch_get_main_queue(), ^{
-      weakSelf.ways = ways;
+      welf.ways = ways;
     });
   });
   
