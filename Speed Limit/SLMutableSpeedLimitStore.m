@@ -9,6 +9,7 @@
 //
 
 #import "SLMutableSpeedLimitStore.h"
+#import "NSData+SLNSDataCompression.h"
 
 @interface SLMutableSpeedLimitStore()
 
@@ -110,8 +111,8 @@
           [fileWays addObject:way];
         }
         
-        NSString *filename = [NSString stringWithFormat:@"%i_%i.slw", (int)fileLat - 180, (int)fileLon - 180];
-        NSData *fileData = [NSKeyedArchiver archivedDataWithRootObject:fileWays];
+        NSString *filename = [NSString stringWithFormat:@"%i_%i.slw.gz", (int)fileLat - 180, (int)fileLon - 180];
+        NSData *fileData = [[NSKeyedArchiver archivedDataWithRootObject:fileWays] gzipDeflate];
         
         [fileData writeToURL:[url URLByAppendingPathComponent:filename] atomically:YES];
       }

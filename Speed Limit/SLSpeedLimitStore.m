@@ -10,11 +10,12 @@
 
 #import "SLSpeedLimitStore.h"
 #import <CoreLocation/CoreLocation.h>
+#import "NSData+SLNSDataCompression.h"
 
 @interface SLSpeedLimitStore ()
 
 @property NSURL *storageUrl;
-@property NSArray *ways;
+@property NSCache *waysCache;
 
 @end
 
@@ -31,29 +32,25 @@
     return nil;
   
   self.storageUrl = url;
-  
-  __weak typeof(self) welf = self;
-  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-    
-    NSArray *ways = [NSKeyedUnarchiver unarchiveObjectWithFile:self.storageUrl.path];
-    dispatch_sync(dispatch_get_main_queue(), ^{
-      welf.ways = ways;
-    });
-  });
+  self.waysCache = [[NSCache alloc] init];
+  self.waysCache.countLimit = 4;
   
   return self;
 }
 
 - (void)findWayForLocationTrail:(NSArray *)locations callback:(void (^)(SLWay *way))callback
 {
-  if (!self.ways)
+  NSArray *ways = [self waysForLocationTrail:locations];
+  
+  if (!ways) {
     return;
+  }
   
   CLLocationCoordinate2D currentCoord = [(CLLocation *)locations.lastObject coordinate];
   
   __block BOOL foundWay = NO;
   
-  [self.ways enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(SLWay *way, NSUInteger idx, BOOL *stop) {
+  [ways enumerateObjectsWithOptions:NSEnumerationConcurrent usingBlock:^(SLWay *way, NSUInteger idx, BOOL *stop) {
     if (![way matchesLocation:currentCoord trail:locations])
       return;
     
@@ -66,6 +63,50 @@
       callback(way);
     });
   }];
+}
+
+- (NSArray *)waysForLocationTrail:(NSArray *)locations
+{
+  CLLocationCoordinate2D currentCoord = [(CLLocation *)locations.lastObject coordinate];
+  
+  NSUInteger fileLat = floor(currentCoord.latitude + 180);
+  NSUInteger fileLon = floor(currentCoord.longitude + 180);
+  
+  NSString *filename = [NSString stringWithFormat:@"%i_%i.slw.gz", (int)fileLat - 180, (int)fileLon - 180];
+  NSArray *ways = [self.waysCache objectForKey:filename];
+  if (ways)
+    return ways;
+  
+  NSURL *localFileUrl = [self.storageUrl URLByAppendingPathComponent:filename];
+  NSData *fileData = [NSData dataWithContentsOfURL:localFileUrl];
+  fileData = [fileData gzipInflate];
+  
+  if (!fileData) {
+    static NSDate *lastDownloadDate = nil;
+    
+    // if there is no last download date, or if it's more than 2 minutes ago, try downloading from the remote server
+    if (!lastDownloadDate || [lastDownloadDate timeIntervalSinceNow] < 120) {
+      lastDownloadDate = [NSDate date];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"SLSpeedLimitStoreBeginDownload" object:self userInfo:nil];
+      
+      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSURL *remoteURL = [[NSURL URLWithString:@"http://abhibeckert.com/speed-limit.sld"] URLByAppendingPathComponent:filename];
+        NSData *remoteData = [NSData dataWithContentsOfURL:remoteURL];
+        [remoteData writeToURL:localFileUrl options:NSDataWritingAtomic error:NULL];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+          [[NSNotificationCenter defaultCenter] postNotificationName:@"SLSpeedLimitStoreFinishedDownload" object:self userInfo:@{@"success": remoteData ? @YES : @NO}];
+        });
+      });
+    }
+    
+    return nil;
+  }
+  
+  ways = [NSKeyedUnarchiver unarchiveObjectWithData:fileData];
+  
+  [self.waysCache setObject:ways forKey:filename];
+  return ways;
 }
 
 - (NSArray *)allWays

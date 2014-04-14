@@ -15,7 +15,6 @@
   CLLocationCoordinate2D *coords;
 }
 
-@property NSUInteger wayId;
 @property (strong) NSString *name;
 @property NSUInteger speedLimit;
 
@@ -45,15 +44,22 @@
 
 - (id)initWithCoder:(NSCoder *)decoder
 {
-  unsigned long wayId = *(unsigned long *)([decoder decodeBytesWithReturnedLength:NULL]);
+  if (!(self = [super init]))
+    return nil;
   
-  NSString *name = [decoder decodeObject];
+  self.name = [decoder decodeObject];
+  self.speedLimit = *(unsigned long *)([decoder decodeBytesWithReturnedLength:NULL]);
   
-  unsigned long speed = *(unsigned long *)([decoder decodeBytesWithReturnedLength:NULL]);
+  coordCount = *(unsigned long *)([decoder decodeBytesWithReturnedLength:NULL]);
+  coords = malloc(coordCount * sizeof(CLLocationCoordinate2D));
+  for (NSUInteger nodeIndex = 0; nodeIndex < coordCount; nodeIndex++) {
+    float lat = *(float *)([decoder decodeBytesWithReturnedLength:NULL]);
+    float lon = *(float *)([decoder decodeBytesWithReturnedLength:NULL]);
+    
+    coords[nodeIndex] = CLLocationCoordinate2DMake(lat, lon);
+  }
   
-  NSArray *nodes = [decoder decodeObject];
-  
-  return [self initWithWayID:wayId name:name speedLimit:speed nodes:nodes];
+  return self;
 }
 
 - (void)dealloc
@@ -66,7 +72,6 @@
   if (!(self = [super init]))
     return nil;
   
-  self.wayId = wayId;
   self.name = name;
   self.speedLimit = speed;
   
@@ -81,7 +86,7 @@
 
 - (NSString *)description
 {
-  return [NSString stringWithFormat:@"<SLWay> %@", [self dictionaryWithValuesForKeys:@[@"wayId", @"name", @"speedLimit", @"nodes"]]];
+  return [NSString stringWithFormat:@"<SLWay> %@", [self dictionaryWithValuesForKeys:@[@"name", @"speedLimit", @"nodes"]]];
 }
 
 - (NSArray *)nodes

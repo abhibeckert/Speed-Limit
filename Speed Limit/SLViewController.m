@@ -3,7 +3,7 @@
 //  Speed Limit
 //
 //  Created by Abhi Beckert on 25/03/2014.
-//  
+//
 //  This is free and unencumbered software released into the public domain.
 //  For more information, please refer to <http://unlicense.org/>
 //
@@ -13,7 +13,7 @@
 
 @interface SLViewController ()
 
-@property NSArray *speedLimitStores;
+@property SLSpeedLimitStore *speedLimitStore;
 @property SLWay *currentWay;
 
 @end
@@ -24,18 +24,15 @@
 {
   // monitor speed updates
   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locationDataUpdated:) name:@"SLLocationDataUpdated" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(storeBeginDownload:) name:@"SLSpeedLimitStoreBeginDownload" object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(storeFinishDownload:) name:@"SLSpeedLimitStoreFinishedDownload" object:nil];
   
-  // load speed limit stores
-  self.speedLimitStores = @[];
-  NSURL *documentsUrl = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-  NSDirectoryEnumerator *documentsEnumerator = [[NSFileManager defaultManager] enumeratorAtURL:documentsUrl includingPropertiesForKeys:nil options:0 errorHandler:NULL];
-  for (NSURL *childUrl in documentsEnumerator) {
-    if (![childUrl.pathExtension isEqualToString:@"slw"])
-      continue;
-    
-    SLSpeedLimitStore *store = [[SLSpeedLimitStore alloc] initWithStorageURL:childUrl];
-    self.speedLimitStores = [self.speedLimitStores arrayByAddingObject:store];
+  // load speed limit store
+  NSURL *storeUrl = [[[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject] URLByAppendingPathComponent:@"store.sld"];
+  if (![storeUrl checkResourceIsReachableAndReturnError:NULL]) {
+    [[NSFileManager defaultManager] createDirectoryAtURL:storeUrl withIntermediateDirectories:YES attributes:@{} error:NULL];
   }
+  self.speedLimitStore = [[SLSpeedLimitStore alloc] initWithStorageURL:storeUrl];
   
   [super viewDidLoad];
 }
@@ -50,23 +47,34 @@
 {
   NSArray *locations = notif.userInfo[@"locations"];
   
-//  locations = @[[[CLLocation alloc] initWithLatitude:-17.51716 longitude:145.60797]]; // millaa millaa malanda road
+  //  locations = @[[[CLLocation alloc] initWithLatitude:-17.51716 longitude:145.60797]]; // millaa millaa malanda road
   
   // if we have a away, and it has a speed limit, then check if we're still inside that way.
   if (self.currentWay && self.currentWay.speedLimit != 0) {
     if ([self.currentWay matchesLocation:[(CLLocation *)locations.lastObject coordinate] trail:locations])
       return;
   }
-//  self.currentStreetLabel.text = [locations.lastObject description]; // uncomment this to show lat/lon whenever the a way cannot be found
+  //  self.currentStreetLabel.text = [locations.lastObject description]; // uncomment this to show lat/lon whenever the a way cannot be found
   
-  // search all stores for a way matching the location data
-  for (SLSpeedLimitStore *store in self.speedLimitStores) {
-    [store findWayForLocationTrail:locations callback:^(SLWay *way) {
-      self.speedometerView.currentSpeedLimit = way.speedLimit;
-      self.speedLimitView.currentSpeedLimit = way.speedLimit;
-      self.currentStreetLabel.text = way.name;
-      self.currentWay = way;
-    }];
+  // find way
+  [self.speedLimitStore findWayForLocationTrail:locations callback:^(SLWay *way) {
+    self.speedometerView.currentSpeedLimit = way.speedLimit;
+    self.speedLimitView.currentSpeedLimit = way.speedLimit;
+    self.currentStreetLabel.text = way.name;
+    self.currentWay = way;
+  }];
+}
+
+- (void)storeBeginDownload:(NSNotification *)notif
+{
+  if (![self.currentStreetLabel.text isEqualToString:@"Unable to download map data"])
+    self.currentStreetLabel.text = @"Downloading map data © OpenStreetMap.org";
+}
+
+- (void)storeFinishDownload:(NSNotification *)notif
+{
+  if (![notif.userInfo[@"success"] boolValue]) {
+    self.currentStreetLabel.text = @"Unable to download map data";
   }
 }
 

@@ -46,6 +46,10 @@
 		384380EF18E4320F009D37C0 /* SLWay.m in Sources */ = {isa = PBXBuildFile; fileRef = 384380EE18E4320F009D37C0 /* SLWay.m */; };
 		384380F018E4320F009D37C0 /* SLWay.m in Sources */ = {isa = PBXBuildFile; fileRef = 384380EE18E4320F009D37C0 /* SLWay.m */; };
 		384380F218E4CA97009D37C0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384380F118E4CA97009D37C0 /* CoreLocation.framework */; };
+		3888F97418FA8F1E00FD16BE /* NSData+SLNSDataCompression.m in Sources */ = {isa = PBXBuildFile; fileRef = 3888F97318FA8F1E00FD16BE /* NSData+SLNSDataCompression.m */; };
+		3888F97518FA8F1E00FD16BE /* NSData+SLNSDataCompression.m in Sources */ = {isa = PBXBuildFile; fileRef = 3888F97318FA8F1E00FD16BE /* NSData+SLNSDataCompression.m */; };
+		3888F97718FA909400FD16BE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3888F97618FA909400FD16BE /* libz.dylib */; };
+		3888F97918FA9D2200FD16BE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3888F97818FA9D2100FD16BE /* libz.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +123,10 @@
 		384380ED18E4320F009D37C0 /* SLWay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLWay.h; sourceTree = "<group>"; };
 		384380EE18E4320F009D37C0 /* SLWay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLWay.m; sourceTree = "<group>"; };
 		384380F118E4CA97009D37C0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3888F97218FA8F1E00FD16BE /* NSData+SLNSDataCompression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SLNSDataCompression.h"; sourceTree = "<group>"; };
+		3888F97318FA8F1E00FD16BE /* NSData+SLNSDataCompression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SLNSDataCompression.m"; sourceTree = "<group>"; };
+		3888F97618FA909400FD16BE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libz.dylib; sourceTree = DEVELOPER_DIR; };
+		3888F97818FA9D2100FD16BE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3888F97918FA9D2200FD16BE /* libz.dylib in Frameworks */,
 				384380F218E4CA97009D37C0 /* CoreLocation.framework in Frameworks */,
 				3843807018E10D51009D37C0 /* CoreGraphics.framework in Frameworks */,
 				3843807218E10D51009D37C0 /* UIKit.framework in Frameworks */,
@@ -147,6 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3888F97718FA909400FD16BE /* libz.dylib in Frameworks */,
 				384380B118E40657009D37C0 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,6 +199,8 @@
 		3843806C18E10D51009D37C0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3888F97818FA9D2100FD16BE /* libz.dylib */,
+				3888F97618FA909400FD16BE /* libz.dylib */,
 				384380F118E4CA97009D37C0 /* CoreLocation.framework */,
 				3843806D18E10D51009D37C0 /* Foundation.framework */,
 				3843806F18E10D51009D37C0 /* CoreGraphics.framework */,
@@ -221,6 +233,8 @@
 				384380E218E41F40009D37C0 /* SLSpeedLimitStore.m */,
 				384380ED18E4320F009D37C0 /* SLWay.h */,
 				384380EE18E4320F009D37C0 /* SLWay.m */,
+				3888F97218FA8F1E00FD16BE /* NSData+SLNSDataCompression.h */,
+				3888F97318FA8F1E00FD16BE /* NSData+SLNSDataCompression.m */,
 			);
 			path = "Speed Limit";
 			sourceTree = "<group>";
@@ -475,6 +489,7 @@
 				384380E318E41F40009D37C0 /* SLSpeedLimitStore.m in Sources */,
 				384380AA18E14EB8009D37C0 /* SLSpeedLimitView.m in Sources */,
 				3843808718E10D51009D37C0 /* SLViewController.m in Sources */,
+				3888F97418FA8F1E00FD16BE /* NSData+SLNSDataCompression.m in Sources */,
 				3843807E18E10D51009D37C0 /* SLAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -493,6 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				384380F018E4320F009D37C0 /* SLWay.m in Sources */,
+				3888F97518FA8F1E00FD16BE /* NSData+SLNSDataCompression.m in Sources */,
 				384380EC18E422FB009D37C0 /* SLOSMImporter.m in Sources */,
 				384380BD18E40657009D37C0 /* main.m in Sources */,
 				384380C418E40657009D37C0 /* SLEditorAppDelegate.m in Sources */,
