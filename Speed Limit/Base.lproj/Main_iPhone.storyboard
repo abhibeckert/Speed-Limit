@@ -16,25 +16,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HTR-oX-rld" customClass="SLSpeedometerView">
-                                <rect key="frame" x="30" y="40" width="240" height="240"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u4p-y9-CTW" customClass="SLSpeedLimitView">
-                                <rect key="frame" x="298" y="40" width="240" height="240"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Map Data © OpenStreetMap.org" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgW-9D-059">
-                                <rect key="frame" x="20" y="278" width="518" height="42"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Map Data © OpenStreetMap.org" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgW-9D-059">
+                                <rect key="frame" x="0.0" y="278" width="568" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5qQ-hh-SZW">
+                                <rect key="frame" x="0.0" y="0.0" width="568" height="280"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u4p-y9-CTW" customClass="SLSpeedLimitView">
+                                        <rect key="frame" x="332" y="46" width="227" height="227"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HTR-oX-rld" customClass="SLSpeedometerView">
+                                        <rect key="frame" x="9" y="46" width="227" height="227"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="u4p-y9-CTW" secondAttribute="trailing" constant="9" id="9wS-td-jd4"/>
+                                    <constraint firstItem="HTR-oX-rld" firstAttribute="leading" secondItem="5qQ-hh-SZW" secondAttribute="leading" constant="9" id="TLn-dI-xO3"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5qQ-hh-SZW" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="DFe-Z6-OPw"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="wgW-9D-059" secondAttribute="bottom" id="Fzd-an-3qt"/>
+                            <constraint firstAttribute="trailing" secondItem="5qQ-hh-SZW" secondAttribute="trailing" id="V6k-sw-WAO"/>
+                            <constraint firstItem="5qQ-hh-SZW" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="aNs-zP-4nh"/>
+                            <constraint firstItem="wgW-9D-059" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="gfp-M9-tzu"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="5qQ-hh-SZW" secondAttribute="bottom" constant="40" id="hAZ-tQ-yrM"/>
+                            <constraint firstAttribute="trailing" secondItem="wgW-9D-059" secondAttribute="trailing" id="oz5-0J-KwH"/>
+                        </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
