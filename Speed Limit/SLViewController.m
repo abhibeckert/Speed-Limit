@@ -45,23 +45,26 @@
 
 - (void)locationDataUpdated:(NSNotification *)notif
 {
+  // search for a way that is at least 10 meters closer than the currently active way
   NSArray *locations = notif.userInfo[@"locations"];
+  CLLocationCoordinate2D currentLocation = [(CLLocation *)locations.lastObject coordinate];
   
-  //  locations = @[[[CLLocation alloc] initWithLatitude:-17.51716 longitude:145.60797]]; // millaa millaa malanda road
-  
-  // if we have a away, and it has a speed limit, then check if we're still inside that way.
-  if (self.currentWay && self.currentWay.speedLimit != 0) {
-    if ([self.currentWay matchesLocation:[(CLLocation *)locations.lastObject coordinate] trail:locations])
-      return;
+  __block CLLocationDistance currentWayDistance = CGFLOAT_MAX;
+  if (self.currentWay) {
+    currentWayDistance = [self.currentWay distanceFromLocation:currentLocation] - 10;
   }
-  //  self.currentStreetLabel.text = [locations.lastObject description]; // uncomment this to show lat/lon whenever the a way cannot be found
   
-  // find way
+  __weak SLViewController *welf = self;
   [self.speedLimitStore findWayForLocationTrail:locations callback:^(SLWay *way) {
-    self.speedometerView.currentSpeedLimit = way.speedLimit;
-    self.speedLimitView.currentSpeedLimit = way.speedLimit;
-    self.currentStreetLabel.text = way.name;
-    self.currentWay = way;
+    CLLocationDistance distance = [way distanceFromLocation:currentLocation];
+    if (distance > currentWayDistance)
+      return;
+    
+    welf.speedometerView.currentSpeedLimit = way.speedLimit;
+    welf.speedLimitView.currentSpeedLimit = way.speedLimit;
+    welf.currentStreetLabel.text = way.name;
+    welf.currentWay = way;
+    currentWayDistance = distance;
   }];
 }
 

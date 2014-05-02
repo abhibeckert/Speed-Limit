@@ -19,4 +19,6 @@ double radiansToDegrees(double radians);
 double distanceToCoord(CLLocationCoordinate2D coord1, CLLocationCoordinate2D coord2);
 double bearingToCoord(CLLocationCoordinate2D coord1, CLLocationCoordinate2D coord2);
 
+double FindDistanceToSegment(double x1, double y1, double x2, double y2, double pointX, double pointY);
+
 #endif

@@ -24,4 +24,6 @@
 
 - (BOOL)matchesLocation:(CLLocationCoordinate2D)location trail:(NSArray *)locations;
 
+- (CLLocationDistance)distanceFromLocation:(CLLocationCoordinate2D)location;
+
 @end

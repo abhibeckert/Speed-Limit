@@ -206,4 +206,28 @@
   return NO;
 }
 
+- (CLLocationDistance)distanceFromLocation:(CLLocationCoordinate2D)location
+{
+  if (coordCount == 1)
+    return NO; // not a valid way, and will screw up our search algorithm
+  
+  CGFloat distance = CGFLOAT_MAX;
+  
+  for (NSUInteger nodeIndex = 1; nodeIndex < coordCount; nodeIndex++) {
+    // load nodes
+    CLLocationCoordinate2D nodeCoord = coords[nodeIndex];
+    
+    CLLocationCoordinate2D prevNodeCoord = coords[nodeIndex - 1];
+    
+    
+    // check distance
+    CGFloat distanceToCurrent = FindDistanceToSegment(prevNodeCoord.longitude, prevNodeCoord.latitude, nodeCoord.longitude, nodeCoord.latitude, location.longitude, location.latitude);
+    
+    if (distanceToCurrent < distance)
+      distance = distanceToCurrent;
+  }
+  
+  return distance * 111111; // a "distance" of 1.0 is approximately 111,111 meters
+}
+
 @end
