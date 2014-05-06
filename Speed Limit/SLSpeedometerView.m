@@ -146,7 +146,7 @@ static CGFloat layerContentsScale;
   CGFloat labelHeight = radius / 2.2;
   
   self.currentSpeedLabel = [CATextLayer layer];
-  self.currentSpeedLabel.frame = CGRectMake(labelCenterX - (labelWidth / 2), labelCenterY - (labelHeight / 2), labelWidth, labelHeight);
+  self.currentSpeedLabel.frame = CGRectMake(labelCenterX - (labelWidth / 2), (labelCenterY - (labelHeight / 2)) * 0.95, labelWidth, labelHeight);
   self.currentSpeedLabel.alignmentMode = @"center";
   self.currentSpeedLabel.fontSize = currentSpeedFont.pointSize;
   self.currentSpeedLabel.font = (__bridge CFTypeRef)currentSpeedFont;
@@ -200,17 +200,20 @@ static CGFloat layerContentsScale;
 - (void)locationDataUpdated:(NSNotification *)notif
 {
   CGFloat speedMps = [notif.userInfo[@"currentSpeed"] floatValue];
-  CGFloat averageSpeedMps = [notif.userInfo[@"averageSpeed"] floatValue];
   CGFloat averageChange = [notif.userInfo[@"averageChange"] floatValue];
   CGFloat timeInterval = [notif.userInfo[@"timeInterval"] floatValue];
   
   // convert to useful unit
+  if (speedMps < 0)
+    speedMps = 0;
   CGFloat speedKmh = speedMps * 3.6;
   CGFloat speedDegrees = minPositionDegrees + (speedKmh * speedDegreeRatio);
   
   // should we show avg speed?
   BOOL speedVisible = timeInterval > 9.5 && averageChange < 0.2;
-  NSString *speedStr = [NSString stringWithFormat:@"%.1f", averageSpeedMps*3.6];
+  if (speedKmh < 5)
+    speedVisible = NO;
+  NSString *speedStr = [NSString stringWithFormat:@"%.1f", speedKmh];
   
   // apply speed, 3 second linear animation because for an expected update of 1 per second, averaging out our speed changes over 3 seconds to limit the effect of innaccurate GPS readings
   [CATransaction begin];

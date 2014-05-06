@@ -34,6 +34,9 @@
   }
   self.speedLimitStore = [[SLSpeedLimitStore alloc] initWithStorageURL:storeUrl];
   
+  // load clock
+  [self updateClock];
+  
   [super viewDidLoad];
 }
 
@@ -51,7 +54,7 @@
   
   __block CLLocationDistance currentWayDistance = CGFLOAT_MAX;
   if (self.currentWay) {
-    currentWayDistance = [self.currentWay distanceFromLocation:currentLocation] - 10;
+    currentWayDistance = [self.currentWay distanceFromLocation:currentLocation] - 20;
   }
   
   __weak SLViewController *welf = self;
@@ -79,6 +82,24 @@
   if (![notif.userInfo[@"success"] boolValue]) {
     self.currentStreetLabel.text = @"Unable to download map data";
   }
+}
+
+
+- (void)updateClock
+{
+  // set clock to current date
+  NSDate *date = [NSDate date];
+  NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit) fromDate:date];
+  
+  self.clockLabel.text = [NSString stringWithFormat:@"%i:%02i", (int)dateComponents.hour, (int)dateComponents.minute];
+  
+  // find the next second
+  NSTimeInterval timeSinceLastSecond = date.timeIntervalSince1970 - floor(date.timeIntervalSince1970);
+  NSTimeInterval timeToNextMinute = (60 - dateComponents.second) - timeSinceLastSecond;
+  
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeToNextMinute * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    [self updateClock];
+  });
 }
 
 @end

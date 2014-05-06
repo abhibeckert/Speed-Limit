@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *currentStreetLabel;
 @property (weak, nonatomic) IBOutlet SLSpeedometerView *speedometerView;
 @property (weak, nonatomic) IBOutlet SLSpeedLimitView *speedLimitView;
+@property (weak, nonatomic) IBOutlet UILabel *clockLabel;
 
 @end

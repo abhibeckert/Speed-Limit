@@ -70,7 +70,7 @@ static CGFloat layerContentsScale;
   self.innerCircleLayer = [CAShapeLayer layer];
   path = [UIBezierPath bezierPath];
   [path moveToPoint:centerPoint];
-  [path addArcWithCenter:centerPoint radius:radius * 0.865 startAngle:0.0 endAngle:M_PI * 2.0 clockwise:YES];
+  [path addArcWithCenter:centerPoint radius:radius * 0.85 startAngle:0.0 endAngle:M_PI * 2.0 clockwise:YES];
   [path closePath];
   self.innerCircleLayer.path = path.CGPath;
   self.innerCircleLayer.fillColor = [UIColor whiteColor].CGColor;
@@ -80,15 +80,15 @@ static CGFloat layerContentsScale;
   
   // speed limit
   CGFloat labelWidth = radius * 2.0;
-  CGFloat labelHeight = radius * 1.1;
-  UIFont *currentSpeedFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:ceil(radius * 0.85)];
+  CGFloat labelHeight = radius * 1.22;
+  UIFont *currentSpeedFont = [UIFont fontWithName:@"AvenirNext-DemiBold" size:ceil(radius)];
   
   self.currentSpeedLabel = [CATextLayer layer];
   self.currentSpeedLabel.frame = CGRectMake(centerPoint.x - (labelWidth / 2), centerPoint.y - (labelHeight / 2), labelWidth, labelHeight);
   self.currentSpeedLabel.alignmentMode = @"center";
   self.currentSpeedLabel.fontSize = currentSpeedFont.pointSize;
   self.currentSpeedLabel.font = (__bridge CFTypeRef)currentSpeedFont;
-  self.currentSpeedLabel.string = @"-";
+  self.currentSpeedLabel.string = @"−";
   self.currentSpeedLabel.contentsScale = layerContentsScale;
   self.currentSpeedLabel.foregroundColor = [UIColor blackColor].CGColor;
   [self.layer addSublayer:self.currentSpeedLabel];
@@ -98,7 +98,14 @@ static CGFloat layerContentsScale;
 {
   _currentSpeedLimit = currentSpeedLimit;
   
-  self.currentSpeedLabel.string = self.currentSpeedLimit == 0 ? @"-" : [NSString stringWithFormat:@"%lu", (unsigned long)self.currentSpeedLimit];
+  self.currentSpeedLabel.string = self.currentSpeedLimit == 0 ? @"−" : [NSString stringWithFormat:@"%lu", (unsigned long)self.currentSpeedLimit];
+  
+  CGFloat radius = floor(MIN(CGRectGetWidth(self.frame), CGRectGetWidth(self.frame)) / 2.0) - 2;
+  if ([(NSString *)self.currentSpeedLabel.string length] >= 3) {
+    self.currentSpeedLabel.font = (__bridge  CFTypeRef)[UIFont fontWithName:@"AvenirNextCondensed-DemiBold" size:ceil(radius)];
+  } else {
+    self.currentSpeedLabel.font = (__bridge  CFTypeRef)[UIFont fontWithName:@"AvenirNext-DemiBold" size:ceil(radius)];
+  }
 }
 
 @end
