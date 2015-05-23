@@ -46,6 +46,11 @@
   // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)prefersStatusBarHidden
+{
+  return NO;
+}
+
 - (void)locationDataUpdated:(NSNotification *)notif
 {
   // search for a way that is at least 10 meters closer than the currently active way
@@ -57,16 +62,15 @@
     currentWayDistance = [self.currentWay distanceFromLocation:currentLocation] - 20;
   }
   
-  __weak SLViewController *welf = self;
   [self.speedLimitStore findWayForLocationTrail:locations callback:^(SLWay *way) {
     CLLocationDistance distance = [way distanceFromLocation:currentLocation];
     if (distance > currentWayDistance)
       return;
     
-    welf.speedometerView.currentSpeedLimit = way.speedLimit;
-    welf.speedLimitView.currentSpeedLimit = way.speedLimit;
-    welf.currentStreetLabel.text = way.name;
-    welf.currentWay = way;
+    self.speedometerView.currentSpeedLimit = way.speedLimit;
+    self.speedLimitView.currentSpeedLimit = way.speedLimit;
+    self.currentStreetLabel.text = way.name;
+    self.currentWay = way;
     currentWayDistance = distance;
   }];
 }
